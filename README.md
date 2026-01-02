@@ -16,3 +16,12 @@ $users = $stmt->fetchAll();
 
 print_r($users);
 ```
+```
+CREATE DATABASE portfolio
+
+Can change variable in file
+```
+<a href="https://github.com/PanhaGit/personnel_profile/blob/master/config/app.php">Click this if want to change variable connection to database MYSQL</a>
+
+
+### USE MYSQL PDO
