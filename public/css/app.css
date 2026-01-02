@@ -33,6 +33,11 @@ body {
   line-height: 1.7;
   min-height: 100vh;
   overflow-x: hidden;
+  background: radial-gradient(
+    circle,
+    rgba(37, 99, 235, 0.1) 0%,
+    transparent 70%
+  );
 }
 
 .layout-main {
@@ -185,11 +190,11 @@ body {
   transform: translate(-50%, -50%);
   width: 800px;
   height: 800px;
-  background: radial-gradient(
+  /* background: radial-gradient(
     circle,
     rgba(37, 99, 235, 0.1) 0%,
     transparent 70%
-  );
+  ); */
   z-index: -1;
   animation: pulse 4s infinite ease-in-out;
 }
@@ -391,6 +396,7 @@ body {
 .section {
   margin: 0;
   animation: fadeInSection 0.8s ease-out;
+  transition: all 0.1s inherit;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -963,12 +969,14 @@ body {
   border-radius: 24px;
   box-shadow: var(--shadow-lg);
   border: 1px solid rgba(255, 255, 255, 0.5);
+  width: 500px;
 }
 
 .contact-form {
   display: flex;
   flex-direction: column;
   gap: 25px;
+  width: 100%;
 }
 
 .contact-form input,
@@ -1387,4 +1395,168 @@ body {
     width: 100%;
     max-width: 280px;
   }
+  .contact-form-wrapper {
+    width: 340px;
+  }
+
+  .contact-form {
+    width: 100%;
+  }
+}
+
+/* ===== Scroll Animation System ===== */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.6s ease;
+}
+
+.animate-on-scroll.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Delay system */
+.delay-1 {
+  transition-delay: 0.1s;
+}
+.delay-2 {
+  transition-delay: 0.2s;
+}
+.delay-3 {
+  transition-delay: 0.3s;
+}
+.delay-4 {
+  transition-delay: 0.4s;
+}
+.delay-5 {
+  transition-delay: 0.5s;
+}
+
+/* Card hover effect */
+.project-item,
+.skill-item,
+.education-item,
+.experience-item,
+.contact-info-card {
+  transition: all 0.3s ease;
+}
+
+.project-item:hover,
+.skill-item:hover,
+.education-item:hover,
+.experience-item:hover,
+.contact-info-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Skill bars animation */
+.skill-level {
+  width: 0;
+  transition: width 1.2s ease;
+}
+.skill-level.show {
+  width: var(--level);
+}
+
+/* ====----------------- ball */
+@keyframes move {
+  100% {
+    transform: translate3d(0, 0, 1px) rotate(360deg);
+  }
+}
+
+.background {
+  /* position: fixed; */
+  /* width: 100vw; */
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -5;
+
+  overflow: hidden;
+}
+
+.ball {
+  position: absolute;
+  width: 20vmin;
+  height: 20vmin;
+  border-radius: 50%;
+  backface-visibility: hidden;
+  animation: move linear infinite;
+}
+
+.ball:nth-child(odd) {
+  color: #006d5b;
+}
+
+.ball:nth-child(even) {
+  color: #ff6f61;
+}
+
+/* Using a custom attribute for variability */
+.ball:nth-child(1) {
+  top: 77%;
+  left: 88%;
+  animation-duration: 40s;
+  animation-delay: -3s;
+  transform-origin: 16vw -2vh;
+  box-shadow: 40vmin 0 5.703076368487546vmin currentColor;
+}
+.ball:nth-child(2) {
+  top: 42%;
+  left: 2%;
+  animation-duration: 53s;
+  animation-delay: -29s;
+  transform-origin: -19vw 21vh;
+  box-shadow: -40vmin 0 5.17594621519026vmin currentColor;
+}
+.ball:nth-child(3) {
+  top: 28%;
+  left: 18%;
+  animation-duration: 49s;
+  animation-delay: -8s;
+  transform-origin: -22vw 3vh;
+  box-shadow: 40vmin 0 5.248179047256236vmin currentColor;
+}
+.ball:nth-child(4) {
+  top: 50%;
+  left: 79%;
+  animation-duration: 26s;
+  animation-delay: -21s;
+  transform-origin: -17vw -6vh;
+  box-shadow: 40vmin 0 5.279749632220298vmin currentColor;
+}
+.ball:nth-child(5) {
+  top: 46%;
+  left: 15%;
+  animation-duration: 36s;
+  animation-delay: -40s;
+  transform-origin: 4vw 0vh;
+  box-shadow: -40vmin 0 5.964309466052033vmin currentColor;
+}
+.ball:nth-child(6) {
+  top: 77%;
+  left: 16%;
+  animation-duration: 31s;
+  animation-delay: -10s;
+  transform-origin: 18vw 4vh;
+  box-shadow: 40vmin 0 5.178483653434181vmin currentColor;
+}
+.ball:nth-child(7) {
+  top: 22%;
+  left: 17%;
+  animation-duration: 55s;
+  animation-delay: -6s;
+  transform-origin: 1vw -23vh;
+  box-shadow: -40vmin 0 5.703026794398318vmin currentColor;
+}
+.ball:nth-child(8) {
+  top: 41%;
+  left: 47%;
+  animation-duration: 43s;
+  animation-delay: -28s;
+  transform-origin: 25vw -3vh;
+  box-shadow: 40vmin 0 5.196265905749415vmin currentColor;
 }

@@ -1,10 +1,10 @@
-<section class="section" id="contact">
+<section class="section  animate-on-scroll animate__animated animate__fadeInLeft" id="contact">
     <h2>Contact Me</h2>
 
     <div class="contact-wrapper">
         <!-- Contact Information -->
         <div class="contact-info">
-            <div class="contact-info-card">
+            <div class="contact-info-card animate-on-scroll delay-2">
                 <div class="contact-icon">
                     <i class="fas fa-envelope"></i>
                 </div>
@@ -14,7 +14,7 @@
                 </div>
             </div>
 
-            <div class="contact-info-card">
+            <div class="contact-info-card animate-on-scroll delay-2">
                 <div class="contact-icon">
                     <i class="fas fa-phone"></i>
                 </div>
@@ -24,7 +24,7 @@
                 </div>
             </div>
 
-            <div class="contact-info-card">
+            <div class="contact-info-card animate-on-scroll delay-2">
                 <div class="contact-icon">
                     <i class="fas fa-map-marker-alt"></i>
                 </div>
@@ -35,7 +35,8 @@
             </div>
 
             <!-- Social Media Links -->
-            <div class="contact-info-card" style="flex-direction: column; align-items: flex-start;">
+            <div class="contact-info-card animate-on-scroll delay-2"
+                style="flex-direction: column; align-items: flex-start;">
                 <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
                     <div class="contact-icon">
                         <i class="fas fa-share-alt"></i>

@@ -1,7 +1,9 @@
 <footer class="footer">
     <div class="footer-content">
         <!-- Logo/Name -->
-        <div class="footer-logo">Mom Raksmey</div>
+        <div class="footer-logo">
+            <img src="./public/assets/logo.svg" class="logo" alt="">
+        </div>
 
         <!-- Social Media Links -->
         <div class="footer-social">

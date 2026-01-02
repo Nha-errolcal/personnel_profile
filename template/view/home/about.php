@@ -1,9 +1,8 @@
-<section class="section" id="about-me">
+<section class="section  animate-on-scroll animate__animated animate__fadeInLeft" id="about-me">
     <h2>About Me</h2>
-
     <div class="about-content">
         <!-- Short Biography -->
-        <p class="about-intro">
+        <p class="about-intro project-card animate__animated animate__zoomIn">
             Hello! I'm <strong>Raksmey Mom</strong>, a passionate Information Technology student at The University of
             Cambodia.
             I specialize in web development with a strong focus on creating modern, secure, and user-friendly
@@ -14,7 +13,7 @@
         </p>
 
         <!-- Personal Background -->
-        <div class="about-details">
+        <div class="about-details project-card animate__animated animate__zoomIn">
             <h3 class="about-section-title">
                 <i class="fas fa-user"></i>
                 Personal Background
@@ -31,7 +30,7 @@
         </div>
 
         <!-- Career Objective -->
-        <div class="about-details">
+        <div class="about-details project-card animate__animated animate__zoomIn">
             <h3 class="about-section-title">
                 <i class="fas fa-bullseye"></i>
                 Career Objective
@@ -46,7 +45,7 @@
         </div>
 
         <!-- Interests and Hobbies -->
-        <div class="about-details">
+        <div class="about-details project-card animate__animated animate__zoomIn">
             <h3 class="about-section-title">
                 <i class="fas fa-heart"></i>
                 Interests & Hobbies

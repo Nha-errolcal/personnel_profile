@@ -1,8 +1,8 @@
-<section class="section" id="project">
+<section class="section  animate-on-scroll animate__animated animate__fadeInLeft" id="project">
     <h2>Projects</h2>
     <div class="projects-list">
         <!-- Project 1 -->
-        <div class="project-item">
+        <div class="project-item animate-on-scroll delay-1">
             <h3><i class="fas fa-project-diagram"></i> School Management System</h3>
             <p style="font-style: italic; color: var(--primary); margin-bottom: 15px;">
                 Final Year University Project
@@ -27,7 +27,7 @@
         </div>
 
         <!-- Project 2 -->
-        <div class="project-item">
+        <div class="project-item animate-on-scroll delay-1">
             <h3><i class="fas fa-shopping-cart"></i> E-Commerce Website</h3>
             <p style="font-style: italic; color: var(--primary); margin-bottom: 15px;">
                 Personal Project - Freelance Work
@@ -52,7 +52,7 @@
         </div>
 
         <!-- Project 3 -->
-        <div class="project-item">
+        <div class="project-item animate-on-scroll delay-1">
             <h3><i class="fas fa-blog"></i> Personal Blog Platform</h3>
             <p style="font-style: italic; color: var(--primary); margin-bottom: 15px;">
                 Learning Project
@@ -76,7 +76,7 @@
         </div>
 
         <!-- Project 4 -->
-        <div class="project-item">
+        <div class="project-item animate-on-scroll delay-1">
             <h3><i class="fas fa-shield-alt"></i> Password Manager</h3>
             <p style="font-style: italic; color: var(--primary); margin-bottom: 15px;">
                 Cybersecurity Project

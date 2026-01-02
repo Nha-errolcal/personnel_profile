@@ -1,7 +1,7 @@
-<section class="section" id="education">
+<section class="section  animate-on-scroll animate__animated animate__fadeInLeft" id="education">
     <h2>Education</h2>
     <div class="education-list">
-        <div class="education-item">
+        <div class="education-item animate-on-scroll delay-2">
             <h3>The University of Cambodia</h3>
             <p><strong>Bachelor of Science in Information Technology</strong></p>
             <p><i class="fas fa-calendar-alt"></i> 2020 - 2024</p>
@@ -20,7 +20,7 @@
             </div>
         </div>
 
-        <div class="education-item">
+        <div class="education-item animate-on-scroll delay-2">
             <h3>Hun Sen High School</h3>
             <p><strong>High School Diploma - Science Major</strong></p>
             <p><i class="fas fa-calendar-alt"></i> 2017 - 2020</p>

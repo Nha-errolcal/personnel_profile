@@ -19,3 +19,11 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </header>
+        <div class="background">
+            <span class="ball"></span>
+            <span class="ball"></span>
+            <span class="ball"></span>
+            <span class="ball"></span>
+            <span class="ball"></span>
+            <span class="ball"></span>
+        </div>

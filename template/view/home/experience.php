@@ -1,9 +1,9 @@
-<section class="section" id="experience">
+<section class="section " id="experience">
     <h2>Experience</h2>
 
     <div class="experience-timeline">
         <!-- Experience 1 -->
-        <div class="experience-item">
+        <div class="experience-item animate-on-scroll delay-3">
             <div class="experience-content">
                 <span class="experience-date">Sep 2023 - Dec 2023</span>
                 <h3 class="experience-role">Web Development Intern</h3>
@@ -25,7 +25,7 @@
         </div>
 
         <!-- Experience 2 -->
-        <div class="experience-item">
+        <div class="experience-item animate-on-scroll delay-3">
             <div class="experience-content">
                 <span class="experience-date">Jan 2023 - May 2023</span>
                 <h3 class="experience-role">Student IT Support</h3>
@@ -46,7 +46,7 @@
         </div>
 
         <!-- Experience 3 -->
-        <div class="experience-item">
+        <div class="experience-item animate-on-scroll delay-3">
             <div class="experience-content">
                 <span class="experience-date">Jun 2022 - Aug 2022</span>
                 <h3 class="experience-role">Web Development Team Lead</h3>
@@ -68,7 +68,7 @@
         </div>
 
         <!-- Experience 4 -->
-        <div class="experience-item">
+        <div class="experience-item animate-on-scroll delay-3">
             <div class="experience-content">
                 <span class="experience-date">Sep 2021 - Dec 2021</span>
                 <h3 class="experience-role">Programming Tutor</h3>
@@ -90,7 +90,7 @@
         </div>
 
         <!-- Experience 5 -->
-        <div class="experience-item">
+        <div class="experience-item animate-on-scroll delay-3">
             <div class="experience-content">
                 <span class="experience-date">Mar 2021 - Jun 2021</span>
                 <h3 class="experience-role">Freelance Web Developer</h3>
