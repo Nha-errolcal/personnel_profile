@@ -26,6 +26,7 @@ $categories = $categoryController->listCategories();
         </div>
     </header>
 
+    <!-- Skill Modal -->
     <div class="modal fade" id="skillModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -49,18 +50,16 @@ $categories = $categoryController->listCategories();
                             <select class="form-select" name="category_id" id="categoryId" required>
                                 <option value="">Select Category</option>
                                 <?php foreach ($categories as $category): ?>
-                                    <?php
-                                        if($category['status'] != 1) continue;
-                                        ?>
-                                    <option value="<?= $category['id'] ?>"><?= $category['category_name'] ?></option>
+                                    <option value="<?= $category['id'] ?>" data-status="<?= $category['status'] ?>">
+                                        <?= $category['category_name'] ?> <?= $category['status'] != 1 ? '(Inactive)' : '' ?>
+                                    </option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Skill Level (%)</label>
-                            <input type="number" class="form-control" name="skill_level" id="skillLevel" min="0"
-                                max="100" required>
+                            <input type="number" class="form-control" name="skill_level" id="skillLevel" min="0" max="100" required>
                         </div>
 
                         <div class="mb-3">
@@ -88,54 +87,56 @@ $categories = $categoryController->listCategories();
         </div>
     </div>
 
+    <!-- Skills Table -->
     <main class="layout-main">
         <div class="table-responsive">
             <table class="table table-bordered table-hover table-striped align-middle text-center">
                 <thead class="table-active">
-                    <tr>
-                        <th>ID</th>
-                        <th>Skill Name</th>
-                        <th>Category</th>
-                        <th>Skill Level (%)</th>
-                        <th>Level</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
+                <tr>
+                    <th>ID</th>
+                    <th>Skill Name</th>
+                    <th>Category</th>
+                    <th>Skill Level (%)</th>
+                    <th>Level</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
                 </thead>
                 <tbody>
-                    <?php if (empty($skills)): ?>
+                <?php if (empty($skills)): ?>
+                    <tr><td colspan="7">No Data</td></tr>
+                <?php else: ?>
+                    <?php foreach ($skills as $index => $skill): ?>
                         <tr>
-                            <td colspan="7">No Data</td>
-                        </tr>
-                    <?php else: ?>
-                        <?php foreach ($skills as $inex => $skill): ?>
-                            <tr>
-                                <td><?= $skill['id'] ?></td>
-                                <td><?= $skill['skill_name'] ?></td>
-                                <td><?= $skill['category_name'] ?></td>
-                                <td><?= $skill['skill_level'] ?>%</td>
-                                <td><?= $skill['level'] ?></td>
-                                <td>
+                            <td><?= $index + 1 ?></td>
+                            <td><?= $skill['skill_name'] ?></td>
+                            <td><?= $skill['category_name'] ?? 'Deleted' ?></td>
+                            <td><?= $skill['skill_level'] ?>%</td>
+                            <td><?= $skill['level'] ?></td>
+                            <td>
                                     <span class="badge <?= $skill['status'] == 1 ? 'bg-success' : 'bg-secondary' ?>">
                                         <?= $skill['status'] == 1 ? 'Active' : 'Inactive' ?>
                                     </span>
-                                </td>
-                                <td>
-                                    <button class="btn btn-sm btn-primary me-1 edit-btn" data-id="<?= $skill['id'] ?>"
-                                        data-name="<?= $skill['skill_name'] ?>" data-category="<?= $skill['category_id'] ?>"
-                                        data-skilllevel="<?= $skill['skill_level'] ?>" data-level="<?= $skill['level'] ?>"
-                                        data-status="<?= $skill['status'] ?>" data-bs-toggle="tooltip" title="Edit Skill">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-danger delete-btn" data-id="<?= $skill['id'] ?>"
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-primary me-1 edit-btn"
+                                        data-id="<?= $skill['id'] ?>"
+                                        data-name="<?= $skill['skill_name'] ?>"
+                                        data-category="<?= $skill['category_id'] ?>"
+                                        data-skilllevel="<?= $skill['skill_level'] ?>"
+                                        data-level="<?= $skill['level'] ?>"
+                                        data-status="<?= $skill['status'] ?>"
+                                        data-bs-toggle="tooltip" title="Edit Skill">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-danger delete-btn" data-id="<?= $skill['id'] ?>"
                                         data-bs-toggle="tooltip" title="Delete Skill">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </td>
-
-                            </tr>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endif; ?>
                 </tbody>
             </table>
         </div>
@@ -148,17 +149,25 @@ $categories = $categoryController->listCategories();
     const skillForm = document.getElementById("skillForm");
     const skillModalTitle = document.getElementById("skillModalTitle");
     const skillFormBtn = document.getElementById("skillFormBtn");
-    var path = "/personnel_profile/public/ajax/skills/"
+    const path = "/personnel_profile/public/ajax/skills/";
 
-
+    // Add Skill button
     document.getElementById("addSkillBtn").addEventListener("click", () => {
         skillForm.reset();
         document.getElementById("skillId").value = "";
         skillModalTitle.textContent = "Add Skill";
         skillFormBtn.textContent = "Save";
+
+        // Filter category select: show only active categories for new skill
+        Array.from(document.getElementById("categoryId").options).forEach(opt => {
+            opt.style.display = opt.dataset.status == 1 || opt.value == "" ? "block" : "none";
+            if(opt.value == "") opt.selected = true;
+        });
+
         skillModal.show();
     });
 
+    // Edit Skill button
     document.querySelectorAll(".edit-btn").forEach(btn => {
         btn.addEventListener("click", function () {
             const id = this.dataset.id;
@@ -167,14 +176,18 @@ $categories = $categoryController->listCategories();
             const skillLevel = this.dataset.skilllevel;
             const level = this.dataset.level;
             const status = this.dataset.status;
-            // console.log({ id, name, category, skillLevel, level, status });
 
             document.getElementById("skillId").value = id;
             document.getElementById("skillName").value = name;
-            document.getElementById("categoryId").value = category;
             document.getElementById("skillLevel").value = skillLevel;
             document.getElementById("level").value = level;
             document.getElementById("status").value = status;
+
+            // Show all categories for edit, select current skill's category
+            Array.from(document.getElementById("categoryId").options).forEach(opt => {
+                opt.style.display = "block"; // show all
+                opt.selected = opt.value == category;
+            });
 
             skillModalTitle.textContent = "Edit Skill";
             skillFormBtn.textContent = "Update";
@@ -182,7 +195,8 @@ $categories = $categoryController->listCategories();
         });
     });
 
-    skillForm.addEventListener("submit", function (e) {
+    // Submit form (add/update)
+    skillForm.addEventListener("submit", function(e) {
         e.preventDefault();
         const id = document.getElementById("skillId").value;
         const url = id ? path + "skill_update.php" : path + "skill_store.php";
@@ -194,11 +208,12 @@ $categories = $categoryController->listCategories();
                     alert(id ? "Skill updated successfully" : "Skill added successfully");
                     location.reload();
                 } else {
-                    alert("Failed to save skill");
+                    alert(data || "Failed to save skill");
                 }
             });
     });
 
+    // Delete skill
     document.querySelectorAll(".delete-btn").forEach(btn => {
         btn.addEventListener("click", function () {
             if (!confirm("Are you sure you want to delete this skill?")) return;

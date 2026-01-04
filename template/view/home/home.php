@@ -1,7 +1,6 @@
 <?php require_once './template/layouts/header.php'; ?>
 <?php require_once './template/layouts/navbar.php'; ?>
 
-
 <section class="home-hero" id="home">
     <img src="./public/assets/profile.jpg" alt="Profile Photo">
     <h1 class="animate__animated animate__fadeInDown">Mom Raksmey</h1>

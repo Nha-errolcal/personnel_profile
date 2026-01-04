@@ -1,16 +1,21 @@
 <?php
-
 require_once __DIR__ . '/../../../app/controllers/SkillController.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $id = $_POST['id'] ?? 0;
+try {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $skillController = new SkillController();
+        $id = $_POST['id'] ?? 0;
 
-    if ($id) {
-        $controller = new SkillController();
-        $controller->removeSkill($id);
-        echo "success";
+        if (empty($id)) {
+            throw new Exception("Invalid skill ID.");
+        }
+
+        $result = $skillController->removeSkill($id);
+        echo $result ? "success" : "Failed to delete skill";
     } else {
-        echo "error";
+        echo "Invalid request method.";
     }
+} catch (Exception $e) {
+    echo $e->getMessage();
 }
 ?>
