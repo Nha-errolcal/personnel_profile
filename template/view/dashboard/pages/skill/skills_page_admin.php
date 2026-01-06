@@ -1,9 +1,9 @@
 <?php
-require_once __DIR__ . '/../../../../app/controllers/SkillController.php';
+require_once __DIR__ . '/../../../../../app/controllers/SkillController.php';
 $skillController = new SkillController();
 $skills = $skillController->listSkills();
 
-require_once __DIR__ . '/../../../../app/controllers/CategoryController.php';
+require_once __DIR__ . '/../../../../../app/controllers/CategoryController.php';
 $categoryController = new CategoryController();
 $categories = $categoryController->listCategories();
 ?>

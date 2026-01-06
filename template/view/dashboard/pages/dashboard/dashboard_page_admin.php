@@ -5,7 +5,7 @@
         </button>
         <h2>
             <?php
-                $configPath = __DIR__ . "/../../../../public/config/app.php";
+                $configPath = __DIR__ . "/../../../../../public/config/app.php";
                 if (file_exists($configPath)) {
                     $config = include $configPath;
                 } else {

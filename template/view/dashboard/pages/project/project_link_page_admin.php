@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../../../../app/controllers/ProjectLinkController.php';
+require_once __DIR__ . '/../../../../../app/controllers/ProjectLinkController.php';
 $projectLinkController = new ProjectLinkController();
 
 $projectLinks = $projectLinkController->listProjectLinks();

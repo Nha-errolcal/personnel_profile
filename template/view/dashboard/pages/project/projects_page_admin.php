@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../../../../app/controllers/ProjectController.php';
-require_once __DIR__ . '/../../../../app/controllers/ProjectLinkController.php';
+require_once __DIR__ . '/../../../../../app/controllers/ProjectController.php';
+require_once __DIR__ . '/../../../../../app/controllers/ProjectLinkController.php';
 
 $controller = new ProjectController();
 $projects = $controller->getAllProjects();

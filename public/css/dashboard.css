@@ -1,3 +1,6 @@
+/* ==========================
+   Global Reset & Font
+========================== */
 * {
   margin: 0;
   padding: 0;
@@ -5,23 +8,34 @@
   font-family: "Inter", system-ui, sans-serif;
 }
 
-/* Layout */
+body {
+  background-color: #f3f4f6;
+}
+
+/* ==========================
+   Layout
+========================== */
 .layout {
   display: flex;
   min-height: 100vh;
 }
 
-/* Sidebar */
+/* ==========================
+   Sidebar
+========================== */
 .layout-sidebar {
   width: 250px;
   background-color: #1f2937;
   color: white;
-  padding: 0 20px;
+  padding: 20px;
   transition: width 0.3s ease;
+  overflow-y: auto;
 }
 
 .layout-sidebar h2 {
   margin-bottom: 30px;
+  font-size: 1.5rem;
+  color: #fff;
 }
 
 .layout-sidebar a {
@@ -32,8 +46,13 @@
   border-radius: 8px;
   color: #cbd5e1;
   text-decoration: none;
-  margin-bottom: 10px;
-  transition: 0.3s;
+  margin-bottom: 8px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.layout-sidebar a i {
+  width: 20px;
+  text-align: center;
 }
 
 .layout-sidebar a:hover,
@@ -42,12 +61,7 @@
   color: white;
 }
 
-.layout-sidebar i {
-  width: 20px;
-  text-align: center;
-}
-
-/* Collapsed */
+/* Collapsed Sidebar */
 .layout.collapsed .layout-sidebar {
   width: 70px;
 }
@@ -57,21 +71,31 @@
   display: none;
 }
 
+/* Sidebar submenu collapse */
+.layout-sidebar .collapse ul.nav {
+  padding-left: 0;
+}
 
-/* Content */
+/* ==========================
+   Content
+========================== */
 .layout-content {
   flex: 1;
   display: flex;
   flex-direction: column;
 }
-/* Header */
+
+/* ==========================
+   Header
+========================== */
 .layout-header {
   background: white;
   padding: 15px 25px;
   display: flex;
   align-items: center;
   gap: 20px;
-  box-shadow: 0 2px 6px rgba(0,0,0,.05);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  justify-content: space-between;
 }
 
 .toggle-btn {
@@ -81,12 +105,17 @@
   cursor: pointer;
 }
 
-/* Main */
+/* ==========================
+   Main
+========================== */
 .layout-main {
   flex: 1;
   padding: 25px;
-  background: #f3f4f6;
 }
+
+/* ==========================
+   Tables
+========================== */
 .table-container {
   overflow-x: auto;
   margin-top: 10px;
@@ -111,6 +140,7 @@
 .dashboard-table th,
 .dashboard-table td {
   padding: 12px 15px;
+  text-align: left;
 }
 
 .dashboard-table tbody tr {
@@ -122,40 +152,26 @@
   background-color: #f3f4f6;
 }
 
-/* Buttons */
+/* ==========================
+   Buttons
+========================== */
 .edit-btn,
-.delete-btn {
+.delete-btn,
+.add-btn-new {
   border: none;
-  padding: 6px 12px;
   border-radius: 6px;
   cursor: pointer;
   font-size: 13px;
   display: inline-flex;
   align-items: center;
   gap: 5px;
+  padding: 6px 12px;
   transition: 0.2s;
 }
+
 .edit-btn {
   background-color: #2563eb;
   color: white;
-}
-
-.add-btn-new{
-  background-color: #10b981;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: background-color 0.2s;
-  margin: 10px 0 14px 10px;
-}
-.add-btn-new:hover {
-  background-color: #059669;
 }
 
 .edit-btn:hover {
@@ -171,10 +187,42 @@
   background-color: #b91c1c;
 }
 
-/* Footer */
+.add-btn-new {
+  background-color: #10b981;
+  color: white;
+  padding: 8px 16px;
+  gap: 8px;
+  margin: 10px 0 14px 0;
+}
+
+.add-btn-new:hover {
+  background-color: #059669;
+}
+
+/* ==========================
+   Footer
+========================== */
 footer {
   background: #1f2937;
   color: white;
   text-align: center;
   padding: 15px;
+}
+
+/* ==========================
+   Responsive adjustments
+========================== */
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .layout-sidebar {
+    width: 100%;
+    height: auto;
+  }
+
+  .layout.collapsed .layout-sidebar {
+    width: 100%;
+  }
 }

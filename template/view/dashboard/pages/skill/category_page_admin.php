@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../../../../app/controllers/CategoryController.php';
+require_once __DIR__ . '/../../../../../app/controllers/CategoryController.php';
 $categoryController = new CategoryController();
 $categories = $categoryController->listCategories();
 ?>

@@ -1,22 +1,28 @@
 </div> <!-- layout-content -->
 </div> <!-- layout -->
 
-<footer>© 2026 Portfolio Admin</footer>
+<!-- Footer -->
+<footer>
+    &copy; 2026 Portfolio Admin
+</footer>
+
+<!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    document.getElementById("toggleSidebar").onclick = function () {
-        document.querySelector(".layout").classList.toggle("collapsed");
-    };
+    // Sidebar toggle
+    const toggleBtn = document.getElementById("toggleSidebar");
+    const layout = document.querySelector(".layout");
 
-    document.addEventListener("DOMContentLoaded", function () {
-        // Initialize all tooltips
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-            return new bootstrap.Tooltip(tooltipTriggerEl)
-        })
+    toggleBtn.addEventListener("click", () => {
+        layout.classList.toggle("collapsed");
+    });
+
+    // Initialize Bootstrap tooltips
+    document.addEventListener("DOMContentLoaded", () => {
+        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        tooltipTriggerList.forEach(el => new bootstrap.Tooltip(el));
     });
 </script>
 
 </body>
-
 </html>

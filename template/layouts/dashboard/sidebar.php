@@ -1,4 +1,55 @@
-<aside class="layout-sidebar bg-dark vh-100 p-3">
+<?php
+$currentPage = $_GET['page'] ?? 'dashboard';
+
+function isActiveLink(string $page, string $currentPage): string {
+    return $page === $currentPage ? 'active text-white bg-primary' : 'text-white';
+}
+
+function isActiveMenu(array $pages, string $currentPage): string {
+    return in_array($currentPage, $pages) ? 'show' : '';
+}
+
+// sidebar menu
+$sidebarMenu = [
+    [
+        'title' => 'Dashboard',
+        'icon'  => 'fa-gauge-high',
+        'page'  => 'dashboard',
+    ],
+    [
+        'title' => 'Category',
+        'icon'  => 'fa-list-check',
+        'submenu' => [
+            ['title'=>'Categories', 'icon'=>'fa-folder', 'page'=>'category'],
+            ['title'=>'Skills', 'icon'=>'fa-code', 'page'=>'skills'],
+        ]
+    ],
+    [
+        'title' => 'Projects',
+        'icon'  => 'fa-briefcase',
+        'submenu' => [
+            ['title'=>'All Projects', 'icon'=>'fa-folder-open', 'page'=>'projects'],
+            ['title'=>'Project Links', 'icon'=>'fa-folder-open', 'page'=>'project_link'],
+        ]
+    ],
+    [
+        'title' => 'Education',
+        'icon'  => 'fa-briefcase',
+        'submenu' => [
+            ['title'=>'Education', 'icon'=>'fa-folder-open', 'page'=>'education'],
+            ['title'=>'Achievements', 'icon'=>'fa-folder-open', 'page'=>'achievements'],
+            ['title'=>'Clubs', 'icon'=>'fa-users', 'page'=>'clubs'],
+        ]
+    ],
+    [
+        'title' => 'Experience',
+        'icon'  => 'fa-briefcase-tie',
+        'page'  => 'experience',
+    ],
+];
+?>
+
+<aside class="layout-sidebar vh-100 p-3">
     <div class="text-center mb-4">
         <img style="width:70px"
              src="https://png.pngtree.com/png-clipart/20230110/ourmid/pngtree-matcha-drink-icon-or-logo-png-image_6557157.png"
@@ -6,80 +57,40 @@
     </div>
 
     <ul class="nav flex-column">
-
-        <!-- Dashboard -->
-        <li class="nav-item">
-            <a href="index.php?page=dashboard"
-               class="nav-link <?= (($_GET['page'] ?? 'dashboard') == 'dashboard') ? 'active text-white bg-primary' : 'text-white' ?>">
-                <i class="fa-solid fa-gauge-high me-2"></i> Dashboard
-            </a>
-        </li>
-
-        <!-- Category Dropdown -->
-        <li class="nav-item">
-            <a class="nav-link text-white d-flex justify-content-between align-items-center"
-               data-bs-toggle="collapse" href="#categoryMenu" role="button" aria-expanded="<?= in_array($_GET['page'] ?? '', ['category','skills']) ? 'true' : 'false' ?>" aria-controls="categoryMenu">
-                <span><i class="fa-solid fa-list-check me-2"></i> Category</span>
-                <i class="fa fa-chevron-down"></i>
-            </a>
-            <div class="collapse <?= in_array($_GET['page'] ?? '', ['category','skills']) ? 'show' : '' ?>" id="categoryMenu">
-                <ul class="nav flex-column ms-3">
-                    <li class="nav-item">
-                        <a href="index.php?page=category"
-                           class="nav-link <?= ($_GET['page'] ?? '') == 'category' ? 'active text-white bg-primary' : 'text-white' ?>">
-                            <i class="fa-solid fa-folder me-1"></i> Categories
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="index.php?page=skills"
-                           class="nav-link <?= ($_GET['page'] ?? '') == 'skills' ? 'active text-white bg-primary' : 'text-white' ?>">
-                            <i class="fa-solid fa-code me-1"></i> Skills
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-
-        <!-- Projects Dropdown -->
-        <li class="nav-item">
-            <a class="nav-link text-white d-flex justify-content-between align-items-center"
-               data-bs-toggle="collapse" href="#projectMenu" role="button" aria-expanded="<?= ($_GET['page'] ?? '') == 'projects' ? 'true' : 'false' ?>" aria-controls="projectMenu">
-                <span><i class="fa-solid fa-briefcase me-2"></i> Projects</span>
-                <i class="fa fa-chevron-down"></i>
-            </a>
-            <div class="collapse <?= ($_GET['page'] ?? '') == 'projects' ? 'show' : '' ?>" id="projectMenu">
-                <ul class="nav flex-column ms-3">
-                    <li class="nav-item">
-                        <a href="index.php?page=projects"
-                           class="nav-link <?= ($_GET['page'] ?? '') == 'projects' ? 'active text-white bg-primary' : 'text-white' ?>">
-                            <i class="fa-solid fa-folder-open me-1"></i> All Projects
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="index.php?page=project_link"
-                           class="nav-link <?= ($_GET['page'] ?? '') == 'project_link' ? 'active text-white bg-primary' : 'text-white' ?>">
-                            <i class="fa-solid fa-folder-open me-1"></i> Project Links
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-
-        <!-- Education -->
-        <li class="nav-item">
-            <a href="index.php?page=education"
-               class="nav-link <?= ($_GET['page'] ?? '') == 'education' ? 'active text-white bg-primary' : 'text-white' ?>">
-                <i class="fa-solid fa-graduation-cap me-2"></i> Education
-            </a>
-        </li>
-
-        <!-- Experience -->
-        <li class="nav-item">
-            <a href="index.php?page=experience"
-               class="nav-link <?= ($_GET['page'] ?? '') == 'experience' ? 'active text-white bg-primary' : 'text-white' ?>">
-                <i class="fa-solid fa-briefcase-tie me-2"></i> Experience
-            </a>
-        </li>
-
+        <?php foreach ($sidebarMenu as $menuItem): ?>
+            <?php if (isset($menuItem['submenu'])): ?>
+                <li class="nav-item">
+                    <a class="nav-link text-white d-flex justify-content-between align-items-center"
+                       data-bs-toggle="collapse"
+                       href="#<?= strtolower(str_replace(' ', '', $menuItem['title'])) ?>Menu"
+                       role="button"
+                       aria-expanded="<?= isActiveMenu(array_column($menuItem['submenu'], 'page'), $currentPage) ? 'true' : 'false' ?>"
+                       aria-controls="<?= strtolower(str_replace(' ', '', $menuItem['title'])) ?>Menu">
+                        <span><i class="fa-solid <?= $menuItem['icon'] ?> me-2"></i> <?= $menuItem['title'] ?></span>
+                        <i class="fa fa-chevron-down"></i>
+                    </a>
+                    <div class="collapse <?= isActiveMenu(array_column($menuItem['submenu'], 'page'), $currentPage) ?>"
+                         id="<?= strtolower(str_replace(' ', '', $menuItem['title'])) ?>Menu">
+                        <ul class="nav flex-column ms-3">
+                            <?php foreach ($menuItem['submenu'] as $subItem): ?>
+                                <li class="nav-item">
+                                    <a href="index.php?page=<?= $subItem['page'] ?>"
+                                       class="nav-link <?= isActiveLink($subItem['page'], $currentPage) ?>">
+                                        <i class="fa-solid <?= $subItem['icon'] ?> me-1"></i> <?= $subItem['title'] ?>
+                                    </a>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                </li>
+            <?php else: ?>
+                <li class="nav-item">
+                    <a href="index.php?page=<?= $menuItem['page'] ?>"
+                       class="nav-link <?= isActiveLink($menuItem['page'], $currentPage) ?>">
+                        <i class="fa-solid <?= $menuItem['icon'] ?> me-2"></i> <?= $menuItem['title'] ?>
+                    </a>
+                </li>
+            <?php endif; ?>
+        <?php endforeach; ?>
     </ul>
 </aside>
