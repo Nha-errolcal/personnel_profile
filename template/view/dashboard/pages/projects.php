@@ -265,6 +265,7 @@ $projectLink = $projectLinkController->listProjectLinks();
                         // Remove row from table without reload
                         btn.closest("tr").remove();
                         alert("Deleted successfully!");
+                        location.reload()
                     } else {
                         alert("Delete failed");
                     }
