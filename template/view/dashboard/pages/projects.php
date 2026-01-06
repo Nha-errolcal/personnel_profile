@@ -1,7 +1,13 @@
 <?php
 require_once __DIR__ . '/../../../../app/controllers/ProjectController.php';
+require_once __DIR__ . '/../../../../app/controllers/ProjectLinkController.php';
+
 $controller = new ProjectController();
 $projects = $controller->getAllProjects();
+
+$projectLinkController = new ProjectLinkController();
+$projectLink = $projectLinkController->listProjectLinks();
+
 ?>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -51,8 +57,21 @@ $projects = $controller->getAllProjects();
                                 </div>
                                 <div class="mb-3">
                                     <label>Source Code (GitHub)</label>
-                                    <input type="url" class="form-control" name="project_link_id" id="project_link_id" required>
+                                    <select class="form-select" name="project_link_id" id="project_link_id" required>
+                                        <option value="">-- Select GitHub Link --</option>
+                                        <?php foreach($projectLink as $row): ?>
+                                            <option value="<?= $row['id'] ?>">
+                                                <?= $row['link_type'] ?> (<?= $row['source_code_url'] ?>)
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
+
+
                                 </div>
+<!--                                <div class="mb-3">-->
+<!--                                    <label>Source Code (GitHub)</label>-->
+<!--                                    <input type="url" class="form-control" name="project_link_id" id="project_link_id" required>-->
+<!--                                </div>-->
                                 <div class="mb-3">
                                     <label>Demo Link</label>
                                     <textarea class="form-control" name="demo_link" id="demo_link" required></textarea>
@@ -124,7 +143,7 @@ $projects = $controller->getAllProjects();
                     <tr><td colspan="10">No Data</td></tr>
                 <?php else: ?>
                     <?php foreach($projects as $i=>$p): ?>
-                        <tr>
+                        <tr data-id="<?= $p['id'] ?>">
                             <td><?= $i+1 ?></td>
                             <td><?= $p["project_name"] ?></td>
                             <td><?= $p["type_project"] ?></td>
@@ -132,9 +151,10 @@ $projects = $controller->getAllProjects();
                             <td><?= $p["technologies"] ?></td>
 
                             <td>
-                                <a href="<?= $p["project_link_id"] ?>" target="_blank">
-                                    <i class="fab fa-github"></i>
+                                <a href="<?= $p["source_code_url"] ?>" target="_blank">
+                                    <i class="<?= $p["link_icon"] ?>"></i>
                                 </a>
+
                             </td>
 
                             <td>
@@ -158,10 +178,11 @@ $projects = $controller->getAllProjects();
                                         data-project='<?= json_encode($p) ?>'>
                                     <i class="fas fa-edit"></i>
                                 </button>
-                                <button class="btn btn-sm btn-danger btnDelete" data-id="<?= $p["id"] ?>">
+                                <button class="btn btn-sm btn-danger btnDelete" data-id="<?= $p['id'] ?>">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </td>
+
                         </tr>
                     <?php endforeach; ?>
                 <?php endif; ?>
@@ -175,6 +196,7 @@ $projects = $controller->getAllProjects();
 <script>
     const modal = new bootstrap.Modal(document.getElementById("model"));
     const form = document.getElementById("form");
+    const path = "/personnel_profile/public/ajax/project/";
 
     btnNew.onclick = () => {
         form.reset();
@@ -183,6 +205,7 @@ $projects = $controller->getAllProjects();
         modal.show();
     };
 
+    // EDIT
     document.querySelectorAll(".btnEdit").forEach(btn=>{
         btn.onclick = ()=>{
             const p = JSON.parse(btn.dataset.project);
@@ -200,4 +223,53 @@ $projects = $controller->getAllProjects();
             modal.show();
         }
     });
+
+    form.addEventListener("submit", function(e){
+        e.preventDefault();
+
+        const tmpId = document.getElementById("projectId").value;
+        const url = tmpId ? path + "project_update.php" : path + "project_store.php";
+
+        fetch(url, {
+            method: "POST",
+            body: new FormData(this)
+        })
+            .then(res => res.text())
+            .then(data => {
+                if(data.trim() === "success"){
+                    alert(tmpId ? "Project updated successfully!" : "Project added successfully!");
+                    location.reload();
+                }else{
+                    alert("Failed to save project: " + data);
+                }
+            })
+            .catch(err => console.log(err));
+    });
+
+
+    // DELETE
+    document.querySelectorAll(".btnDelete").forEach(btn => {
+        btn.onclick = () => {
+            if (!confirm("Delete this project?")) return;
+
+            const formData = new FormData();
+            formData.append("id", btn.dataset.id);
+
+            fetch(path + "project_delete.php", {
+                method: "POST",
+                body: formData
+            })
+                .then(res => res.text())
+                .then(res => {
+                    if (res.trim() === "success") {
+                        // Remove row from table without reload
+                        btn.closest("tr").remove();
+                        alert("Deleted successfully!");
+                    } else {
+                        alert("Delete failed");
+                    }
+                });
+        };
+    });
+
 </script>
