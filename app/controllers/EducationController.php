@@ -5,7 +5,8 @@ class EducationController
 {
     private $educationService;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->educationService = new EducationService();
     }
 
@@ -14,17 +15,35 @@ class EducationController
         return $this->educationService->getAllAsTable();
     }
 
-    public function create($university_name,$degree,$field_of_study,$start_year,$end_year,$gpa,$year_of_study,$status)
-    {
-        return $this->educationService->create($university_name,$degree,$field_of_study,$start_year,$end_year,$gpa,$year_of_study,$status);
+    public function create(
+        $university_name,
+        $degree,
+        $field_of_study,
+        $start_year,
+        $end_year,
+        $gpa,
+        $year_of_study,
+        $status
+    ) {
+        return $this->educationService->create(
+            $university_name,
+            $degree,
+            $field_of_study,
+            $start_year,
+            $end_year,
+            $gpa,
+            $year_of_study,
+            $status
+        );
     }
 
-    public function update($id,$university_name,$degree,$field_of_study,$start_year,$end_year,$gpa,$year_of_study,$status,$updated_at)
+    public function update($id, $university_name, $degree, $field_of_study, $start_year, $end_year, $gpa, $year_of_study, $status)
     {
-        return $this->educationService->update($id,$university_name,$degree,$field_of_study,$start_year,$end_year,$gpa,$year_of_study,$status,$updated_at);
+        return $this->educationService->update($id, $university_name, $degree, $field_of_study, $start_year, $end_year, $gpa, $year_of_study, $status);
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         return $this->educationService->delete($id);
     }
 }
