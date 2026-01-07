@@ -52,8 +52,7 @@ $education = $controller->listAllAsTable();
 
                                 <div class="mb-3">
                                     <label>Field of Study</label>
-                                    <input type="text" class="form-control" name="field_of_study" id="field_of_study"
-                                        required>
+                                    <input type="text" class="form-control" name="field_of_study" id="field_of_study">
                                 </div>
 
                                 <div class="mb-3">
@@ -71,7 +70,7 @@ $education = $controller->listAllAsTable();
 
                                 <div class="mb-3">
                                     <label>GPA</label>
-                                    <input type="text" class="form-control" name="gpa" id="gpa" required>
+                                    <input type="text" class="form-control" name="gpa" id="gpa">
                                 </div>
 
                                 <div class="mb-3">
@@ -169,7 +168,7 @@ $education = $controller->listAllAsTable();
     const titleModel = document.getElementById("modalTitle");
     const path = "/personnel_profile/public/ajax/education/";
 
-    // Add new button
+    // add new and show model
     btnAddNewShowModel.addEventListener("click", function () {
         form.reset();
         document.getElementById("educationId").value = "";
@@ -177,7 +176,7 @@ $education = $controller->listAllAsTable();
         showModel.show();
     });
 
-    // Submit form (Create + Update)
+    // action create and update
     form.addEventListener("submit", (e) => {
         e.preventDefault();
         const tmpId = document.getElementById("educationId").value;
@@ -198,7 +197,7 @@ $education = $controller->listAllAsTable();
 
     });
 
-    // Edit button
+    // get value to form in model 
     document.querySelectorAll(".btn-edit").forEach(btn => {
         btn.addEventListener("click", () => {
             const edu = JSON.parse(btn.dataset.dataEdu);
@@ -216,7 +215,7 @@ $education = $controller->listAllAsTable();
         });
     });
 
-    // Delete button
+    // delete
     document.querySelectorAll(".btn-delete").forEach(btn => {
         btn.addEventListener("click", () => {
             const id = btn.dataset.id;

@@ -4,15 +4,15 @@ include __DIR__ . "/../../../Helper.php";
 $page = $_GET['page'] ?? 'dashboard';
 
 $pageMap = [
-    'dashboard'=> 'dashboard/dashboard_page_admin.php',
-    'skills'=> 'skill/skills_page_admin.php',
-    'projects'=> 'project/projects_page_admin.php',
-    'project_link'=> 'project/project_link_page_admin.php',
-    'category'=> 'skill/category_page_admin.php',
-    'education'=> 'education/education_page_admin.php',
-    'achievements'=> 'education/achievements_page_admin.php',
-    'clubs'=> 'education/clubs_page_admin.php',
-    'experience'=> 'experience/experience_page_admin.php',
+    'dashboard' => 'dashboard/dashboard_page_admin.php',
+    'skills' => 'skill/skills_page_admin.php',
+    'projects' => 'project/projects_page_admin.php',
+    'project_link' => 'project/project_link_page_admin.php',
+    'category' => 'skill/category_page_admin.php',
+    'education' => 'education/education_page_admin.php',
+    'academic' => 'education/academic_page_admin.php',
+    'clubs' => 'education/clubs_page_admin.php',
+    'experience' => 'experience/experience_page_admin.php',
 ];
 
 // Include layout
