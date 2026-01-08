@@ -20,19 +20,21 @@ class ClubService
         return $this->club->find($id);
     }
 
-    public function create($data)
+    public function create(array $data)
     {
         return $this->club->store(
             $data['club_name'],
+            $data['role_name'],
             $data['status']
         );
     }
 
-    public function update($id, $data)
+    public function update($id, array $data)
     {
         return $this->club->update(
             $id,
             $data['club_name'],
+            $data['role_name'],
             $data['status']
         );
     }

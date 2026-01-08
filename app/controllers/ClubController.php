@@ -15,22 +15,29 @@ class ClubController
         return $this->service->getAll();
     }
 
+
+
     public function store()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            return $this->service->create($_POST);
+            $data = [
+                'club_name' => trim($_POST['club_name'] ?? ''),
+                'role_name' => trim($_POST['role_name'] ?? ''),
+                'status' => isset($_POST['status']) ? (int) $_POST['status'] : 1
+            ];
+            return $this->service->create($data);
         }
-    }
-
-    public function edit($id)
-    {
-        return $this->service->getById($id);
     }
 
     public function update($id)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            return $this->service->update($id, $_POST);
+            $data = [
+                'club_name' => trim($_POST['club_name'] ?? ''),
+                'role_name' => trim($_POST['role_name'] ?? ''),
+                'status' => isset($_POST['status']) ? (int) $_POST['status'] : 1
+            ];
+            return $this->service->update($id, $data);
         }
     }
 

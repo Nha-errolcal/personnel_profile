@@ -22,34 +22,31 @@ class Clubs
     {
         $sql = "SELECT * FROM clubs WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(":id", $id);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function store($club_name, $status)
+    public function store($club_name, $role_name, $status)
     {
-        $sql = "INSERT INTO clubs (club_name, status, created_at)
-                VALUES (:club_name, :status, NOW())";
-
+        $sql = "INSERT INTO clubs (club_name, role_name, status, created_at)
+                VALUES (:club_name, :role_name, :status, NOW())";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(":club_name", $club_name);
-        $stmt->bindParam(":status", $status);
-
+        $stmt->bindParam(":role_name", $role_name);
+        $stmt->bindParam(":status", $status, PDO::PARAM_INT);
         return $stmt->execute();
     }
 
-    public function update($id, $club_name, $status)
+    public function update($id, $club_name, $role_name, $status)
     {
-        $sql = "UPDATE clubs 
-                SET club_name = :club_name, status = :status, updated_at = NOW()
+        $sql = "UPDATE clubs SET club_name = :club_name, role_name = :role_name, status = :status, updated_at = NOW()
                 WHERE id = :id";
-
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(":id", $id);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
         $stmt->bindParam(":club_name", $club_name);
-        $stmt->bindParam(":status", $status);
-
+        $stmt->bindParam(":role_name", $role_name);
+        $stmt->bindParam(":status", $status, PDO::PARAM_INT);
         return $stmt->execute();
     }
 
@@ -57,7 +54,7 @@ class Clubs
     {
         $sql = "DELETE FROM clubs WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(":id", $id);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
         return $stmt->execute();
     }
 }
