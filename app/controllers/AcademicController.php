@@ -12,8 +12,8 @@ class AcademicController
 
     public function getAllAcademics()
     {
-        $academics = $this->academicService->getAllAcademics();
-        echo json_encode($academics);
+        return $this->academicService->getAllAcademics();
+
     }
 
     public function getAcademicById($id)
@@ -28,18 +28,18 @@ class AcademicController
 
     public function createAcademic($education_id, $achievement_name, $achievement_type, $year, $status)
     {
-        $success = $this->academicService->createAcademic(
+        return $this->academicService->createAcademic(
             $education_id,
             $achievement_name,
             $achievement_type,
             $year,
             $status
         );
-        echo json_encode(['success' => $success]);
+        // echo json_encode(['success' => $success]);
     }
     public function updateAcademic($id, $education_id, $achievement_name, $achievement_type, $year, $status)
     {
-        $success = $this->academicService->updateAcademic(
+        return $this->academicService->updateAcademic(
             $id,
             $education_id,
             $achievement_name,
@@ -47,13 +47,11 @@ class AcademicController
             $year,
             $status
         );
-        echo json_encode(['success' => $success]);
     }
 
     public function deleteAcademic($id)
     {
-        $success = $this->academicService->deleteAcademic($id);
-        echo json_encode(['success' => $success]);
+        return $this->academicService->deleteAcademic($id);
     }
 }
 ?>
