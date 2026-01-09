@@ -15,6 +15,11 @@ class AcademicService
         return $this->academicModel->getAllAcademics();
     }
 
+    public function getAsToClient()
+    {
+        return $this->academicModel->getAsClient();
+    }
+
     public function getAcademicById($id)
     {
         return $this->academicModel->getAcademicById($id);

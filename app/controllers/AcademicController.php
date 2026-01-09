@@ -16,6 +16,11 @@ class AcademicController
 
     }
 
+    public function getToClient()
+    {
+        return $this->academicService->getAsToClient();
+    }
+
     public function getAcademicById($id)
     {
         $academic = $this->academicService->getAcademicById($id);

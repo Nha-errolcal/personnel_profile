@@ -39,6 +39,21 @@ class Academic extends Database
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getAsClient()
+    {
+        $sql = "
+            SELECT 
+                aca.*,
+                edu.*
+            FROM academics aca
+            LEFT JOIN education edu ON  aca.education_id = edu.id
+            ORDER BY aca.id DESC
+        ";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     public function getAcademicById($id)
     {
