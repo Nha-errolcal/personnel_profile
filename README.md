@@ -1,3 +1,21 @@
+### Main File conn to Database
+<a href="https://github.com/Nha-errolcal/personnel_profile/blob/master/public/config/app.php">You Can change connecntion to database</a>
+
+### Example
+```php
+<?php
+return [
+    'DB_HOST' => 'localhost',
+    'DB_NAME' => 'your_name_database',
+    'DB_USER' => 'username_database', // default user_name << root>>
+    'DB_PASSWORD' => '', // password
+    'APP_VERSION' => '1.0.0',
+
+
+    'TIMEZONE' => 'Asia/Phnom_Penh',
+];
+```
+
 ---
 
 # Go to view dashboard
